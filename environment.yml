@@ -1,0 +1,63 @@
+# -----------------------------------------------------------------------------
+# environment.yml — full conda environment for the reproducibility pipeline.
+# Pins Python + R + system libs to the versions used to produce the published
+# figures. Create with:
+#     mamba env create -f environment.yml
+#     conda activate polarisation-ukraine
+# The pip section mirrors requirements.txt so either file alone is sufficient.
+# -----------------------------------------------------------------------------
+name: polarisation-ukraine
+channels:
+  - conda-forge
+  - pytorch
+  - nvidia
+dependencies:
+  # ---- Python + build tooling ----
+  - python=3.11
+  - pip>=24.0
+  - setuptools
+  - wheel
+
+  # ---- Compiled deps (pulled from conda-forge, not pip) ----
+  - numpy=1.26.*
+  - pandas=2.2.*
+  - scipy=1.13.*
+  - pyarrow=17.*
+  - scikit-learn=1.5.*
+  - statsmodels=0.14.*
+  - matplotlib=3.9.*
+  - seaborn=0.13.*
+
+  # ---- PyTorch (GPU wheel; drop cudatoolkit for CPU-only installs) ----
+  - pytorch=2.2.*
+  - pytorch-cuda=12.1
+  - torchvision
+  - torchaudio
+
+  # ---- R + tidyverse + spatial (used by figure scripts) ----
+  - r-base=4.4.*
+  - r-tidyverse
+  - r-sf
+  - r-rnaturalearth
+  - r-rnaturalearthdata
+  - r-ggplot2
+  - r-dplyr
+
+  # ---- academictwitteR + tweetbotornot are on CRAN via install.R ----
+
+  # ---- pip-only deps (mirrors requirements.txt) ----
+  - pip:
+      - spacy>=3.7,<3.9
+      - transformers>=4.44
+      - pyabsa>=2.4
+      - sentencepiece>=0.2
+      - bertopic>=0.16
+      - sentence-transformers>=3.0
+      - umap-learn>=0.5.6
+      - hdbscan>=0.8.36
+      - ollama>=0.3.0
+      - tenacity>=8.5
+      - python-dotenv>=1.0
+      - pytest>=8.2
+      - ruff>=0.6
+      - tqdm>=4.66

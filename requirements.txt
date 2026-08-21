@@ -1,0 +1,49 @@
+# -----------------------------------------------------------------------------
+# requirements.txt — pip-installable Python dependencies for the pipeline.
+# Full environment (Python + R + system libs) is pinned in environment.yml.
+# Tested with Python 3.11 on Linux/macOS with CUDA 12.x GPUs.
+# -----------------------------------------------------------------------------
+
+# ---- Core ----
+numpy>=1.26,<2.2
+pandas>=2.2,<2.3
+scipy>=1.13
+tqdm>=4.66
+
+# ---- NLP: NER (spaCy) ----
+spacy>=3.7,<3.9
+# Ukrainian & Russian pipelines are downloaded post-install:
+#   python -m spacy download uk_core_news_sm
+#   python -m spacy download ru_core_news_sm
+
+# ---- NLP: sentiment / ABSA ----
+torch>=2.2
+transformers>=4.44
+pyabsa>=2.4        # LCF-BERT training + inference
+sentencepiece>=0.2
+
+# ---- Topic modelling ----
+bertopic>=0.16
+sentence-transformers>=3.0
+umap-learn>=0.5.6
+hdbscan>=0.8.36
+
+# ---- LLM topic labelling (Ollama runs the model process; we just call it) ----
+ollama>=0.3.0
+tenacity>=8.5      # retry wrapper for LLM calls
+
+# ---- Polarisation metrics ----
+scikit-learn>=1.5
+statsmodels>=0.14
+
+# ---- Visualisation & reporting ----
+matplotlib>=3.9
+seaborn>=0.13
+
+# ---- I/O ----
+pyarrow>=17.0
+python-dotenv>=1.0
+
+# ---- Testing / linting ----
+pytest>=8.2
+ruff>=0.6

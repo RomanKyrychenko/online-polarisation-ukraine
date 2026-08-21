@@ -1,0 +1,99 @@
+# -----------------------------------------------------------------------------
+# .gitignore — Python + R + model weights + raw platform data.
+#
+# The primary rule: never commit raw tweet text, user metadata, API keys,
+# or model checkpoints. Only tweet IDs and de-identified aggregate tables
+# belong in version control.
+# -----------------------------------------------------------------------------
+
+# ---- Raw platform data (never commit; Twitter TOS + GDPR) -------------------
+data/raw/
+data/interim/
+data/tweets/
+data/users/
+*.parquet
+*.jsonl.gz
+*.arrow
+
+# ---- API keys / secrets -----------------------------------------------------
+.env
+.envrc
+*.token
+credentials/
+.Renviron
+
+# ---- Model checkpoints (release via Hugging Face, not git) ------------------
+models/*/pytorch_model.bin
+models/*/model.safetensors
+models/*/*.ckpt
+models/*/*.h5
+*.pt
+*.bin
+*.safetensors
+
+# ---- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ---- Virtual envs -----------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+
+# ---- R ----------------------------------------------------------------------
+.Rhistory
+.Rapp.history
+.RData
+.Ruserdata
+.Rproj.user/
+*_cache/
+/cache/
+*.utf8.md
+*.knit.md
+renv/library/
+renv/local/
+renv/lock/
+renv/python/
+renv/staging/
+
+# ---- OS ---------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Editors ----------------------------------------------------------------
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
